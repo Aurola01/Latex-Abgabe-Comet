@@ -1,0 +1,292 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath}  
+\usepackage{float}
+\usepackage{subcaption} 
+\usepackage{hyperref}
+\usepackage{siunitx}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+
+
+\begin{document}
+\title{Abgabe 1 für Computergestützte Methoden}
+\author{Gruppe 31\\ Aurola Hyseni  Matrikel-Nr. 4358915\\Aliki Marina Constadinidou  Matrikel-Nr. 4355912\\Ece Özcan  Matrikel-Nr. 4362226}
+\date{01.12.2024}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+
+
+
+\newpage
+\section{Der zentrale Grenzwertsatz}
+
+Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, das die Verteilung von Summen unabhängiger, identisch verteilter (i.i.d.) Zufallsvariablen (ZV) beschreibt. Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV annähernd normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nützlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist.
+
+\subsection{Aussage}
+Sei $X_1, X_2, \ldots, X_n$ eine Folge von i.i.d. ZV mit dem Erwartungswert $\mu = E(X_i)$ und der Varianz $\sigma^2 = \text{Var}(X_i)$, wobei $0 < \sigma^2 < \infty$ gelte. Dann konvergiert die standardisierte Summe $Z_n$ dieser ZV für $n \to \infty$ in Verteilung gegen eine Standardnormalverteilung:\footnote{Der zentrale Grenzwertsatz hat verschiedene Verallgemeinerungen. Eine davon ist der Lindeberg-Feller-Zentrale-Grenzwertsatz [1, Seite 328], der schwächere Bedingungen an die Unabhängigkeit und die identische Verteilung der ZV stellt.}
+
+
+ \[
+Z_n = \frac{\sum_{i=1}^n X_i - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} N(0,1).  \]      
+
+
+
+Das bedeutet, dass für große $n$ die Summe der ZV näherungsweise normalverteilt ist mit Erwartungswert $n\mu$ und Varianz $n\sigma^2$:
+\[
+\sum_{i=1}^n X_i \sim N(n\mu, n\sigma^2).
+\]
+
+\subsection{Erklärung der Standardisierung}
+
+Um die Summe der ZV in eine Standardnormalverteilung zu transformieren, subtrahiert man den Erwartungswert $n\mu$ und teilt durch die Standardabweichung $\sigma\sqrt{n}$. Dies führt zu der obigen Formel (1). Die Darstellung (2) ist für $n \to \infty$ nicht wohldefiniert.
+
+\subsection{Anwendungen}
+
+Der ZGS wird in vielen Bereichen der Statistik und der Wahrscheinlichkeitstheorie angewendet. Typische Beispiele sind:
+\begin{itemize}
+    \item \textbf{Fehleranalyse bei Monte-Carlo:} \\Die Monte-Carlo-Methode nutzt Zufallszahlen, um komplexe Systeme zu simulieren. Dabei wird der zentrale Grenzwertsatz angewendet, um die Verteilung von Mittelwerten oder Summen näherungsweise zu bestimmen. Dies ermöglicht eine präzisere Einschätzung der Unsicherheiten in den Simulationsergebnissen.
+    
+    \item \textbf{Schätzung von Mittelwerten in der Statistik:} \\Der zentrale Grenzwertsatz zeigt, dass der Mittelwert einer großen Stichprobe aus einer beliebigen Verteilung annähernd einer Normalverteilung folgt.  Diese Eigenschaft ist von zentraler Bedeutung für die Durchführung von Hypothesentests und die Konstruktion von Konfidenzintervallen, da sie statistische Schlussfolgerungen ermöglicht.
+\end{itemize}
+
+\section{Datenhaltung und -aufbereitung}
+
+
+\subsection{Datenvearbeitung}
+\subsubsection{Struktur und Aufbau des Datensatzes}
+Der vorliegende Datensatz enthält Informationen zum Fahrradverleih und zu den Wetterbedinungen im Zeitraum vom 01.01.2023 bis zum 31.12.2023.
+\\
+\\ Die Attributnamen umfassen Zelle A1 bis L1. Darunter fallen: Group, Station, Date, day of year, day of week, month of year, precipitation, windspeed, min temperature, average temperature, max temperature, count.\footnote{Übersetzung ins Deutsche: Gruppe, Station, Datum, Kalendertag, Kalenderwoche, Monat des Jahres, Niederschlag, Windgeschwindigkeit, Minimaltemperatur, Durchschnittstemperatur, Maximaltemperatur, Anzahl}
+\\
+\\ Es werden insbesondere die Datensätze von 110936 bis 11296, welche 360 Datensätze beinhalten, berücksichtigt. Dieser Teil umfasst alle relevanten Informationen für die uns zugeteilte Station $Broadway$ $und$ $W$ $142$ $ST$. \\Besonders interessieren uns hierbei die Durchschnitts-, Maximal-, und Minimaltemperaturen. Es zeigt sich, dass die Anzahl der verliehenen Fahrräder stark von den Wetterbedinungen beeinflusst wurden. In diesem Fall ist es so, dass je kühler das Wetter war, desto weniger Fahrräder wurden ausgeliehen.
+\\
+\\ 
+
+
+\subsubsection{Tabellensortierung}
+
+    
+\textbf{Beschreibung der Sortierung}
+\\Die Ordnung der Rohdaten stellt Schwierigkeiten für die Berechnung der höchsten mittleren Temperatur dar, aufgrund dessen haben wir per Excel die Zellenbeschriftungen angepasst, um die Daten zu filtern. 
+Zur Betrachtung der für uns relevanten Daten, die nur für die Station $Broadway$ $und$ $W$ $142$ $ST$ "gelten", mussten wir den Datensatz auf Station 31 beschränken.
+
+
+
+
+
+
+\begin{figure}[h]
+    \centering 
+    \includegraphics[width=1\textwidth]{1_Normalform.png}
+    \caption{Sortierte Tabelle der Daten von Station 31}
+    \label{fig:normalform1}
+\end{figure}
+
+\newpage
+
+\subsubsection{Tabellenkalkulation}
+
+\textbf{Berechnung der höchsten mittleren Temperatur}
+\\Um die höchste mittlere Temperatur zu berechnen, muss die Spalte $average$ $temperature$ in betracht gezogen werden. Diese muss anhand des Filters, nach $absteigend$ sortiert werden. \\Dabei fällt auf, dass $83^\circ F$ die höchste mittlere Temperatur ist. \\Zu beachten ist dennoch, dasss wir Grad Fahrenheit in Grad Celcius umwandeln müssen. Hierfür haben wir folgende Formel verwendet:
+
+\vspace{0.5cm}
+
+
+\[
+T_{\text{Celsius}} = \frac{(T_{\text{Fahrenheit}} - 32) \cdot 5}{9}
+\]
+
+\vspace{0.5cm}
+\begin{center}
+
+\textbf{Die Temperatur beträgt \SI{28,33}{\degreeCelsius}}.
+\end{center}
+
+
+\begin{figure}[h]
+    \centering 
+    \includegraphics[width=1\textwidth]{Excel_höchste_Temperatur_Fahrenheit.png}
+    \caption{Höchste mittlere Temperatur in Grad Fahrenheit}
+    \label{fig:normalform1}
+\end{figure}
+
+
+    
+\subsection{Datenhaltung}
+\subsubsection{1. und 2. Normalform}
+\textbf{1. Normalform (1NF)} \\Keine wiederholten Gruppen
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{1_Normalformkopie_SQLite.jpeg}
+    \caption{1. Normalform in SQLite}
+    \label{fig:enter-label}
+\end{figure}
+
+
+
+\textbf{2. Normalform (2NF)}\\Keine partiellen Abhängigkeiten\\Wir haben die 1. Normalform in drei unterschiedliche Tabellen unterteilt.\\Diese werden im Folgenden, gemeinsam mit den jeweiligen Befehlen beigefügt. 
+
+\newpage
+\begin{center}
+    
+\textbf{Tabelle Station}
+
+    
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Befehle_Tabelle_Station.jpeg}
+        \caption{Definition der Tabelle}
+    \end{minipage} \hfill
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Befehle_Station.jpeg}
+        \caption{Ausführung}
+    \end{minipage}
+\end{figure}
+\textbf{Daraus folgt:}
+
+
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{2_Normalform_Station.jpeg}
+    \caption{2. Normalform Station}
+    \label{fig:enter-label}
+\end{figure}
+\end{center}
+
+
+\begin{center}
+    \textbf{Tabelle Wetter}
+\end{center}
+
+
+
+
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Befehle_Tabelle_Wetter.jpeg}
+        \captionof{figure}{Definition der Tabelle}
+    \end{minipage} \hspace{0.5cm}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Befehle_Wetter.jpeg}
+        \captionof{figure}{Ausführung}
+    \end{minipage}
+\begin{center}
+    
+
+\textbf{Daraus folgt:}
+
+\end{center}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{2_Normalform_Wetter.jpeg}
+    \caption{2. Normalform Wetter}
+    \label{fig:enter-label}
+\end{figure}
+
+
+\newpage
+\begin{center}
+    \textbf{Tabelle Verleih}
+\end{center}
+
+   \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Befehle_Tabelle_Verleih.jpeg}
+        \captionof{figure}{Definition der Tabelle}
+    \end{minipage} \hspace{0.5cm}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Befehle_Verleih.jpeg}
+        \captionof{figure}{Ausführung}
+    \end{minipage}
+
+\begin{center}
+    
+
+\textbf{Daraus folgt:}
+
+\end{center}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{2_Normalform_Verleih.jpeg}
+    \caption{2. Normalform Wetter}
+    \label{fig:enter-label}
+\end{figure}
+\vspace{2cm}
+\subsubsection{DDL-Teil SQLite}
+\textbf{Befehle des DDL-Teils}\\Das SQLite-Online-Programm, mit welchem wir gearbeitet haben, erstellt automatisch Tabellen, wodurch es nicht dazu kam einen DDL-Teil zu erstellen. Dennoch listen wir hier die notwendigen Befehle für den DDL-Teil auf: 
+
+\begin{itemize}
+    \item $CREATE$ $DATABASE$: Erstellung einer Datenbank
+    \item $CREATE$ $TABLE$: Erzeugung einer Tabelle
+    \item $ALTER$ $TABLE$: Modifzierung einer Tabelle
+    \item $DROP$ $TABLE$: Löschen einer Tabelle
+    \item $CREATE$ $INDEX$: Erzeugung eines Index
+    \item $DROP$ $INDEX$: Löschen eines Index
+\end{itemize}
+\newpage
+\subsubsection{Höchste mittlere Temperatur in SQLite}
+\textbf{Beschreibung der Vorgehensweise}\\Um die höchste mittlere Temperatur über SQLite zu bestimmen, ist es notwendig die Daten unserer Station als $CSV$ geordnet in SQLite hochzuladen, dies kann man der 1. Normalform unter Punkt \textit{2.2.1} entnehmen. Daraufhin berechnet man anhand bestimmer Befehle, welche folgend abgebildet werden, die höchste mittlere Temperatur.\\ Zu beachten ist, dass die Temperaturen in der 1. Normalform in Grad Fahreneinheit verzeichnet sind und wir durch einen Befehl die höchste mittlere Temperatur in Grad Ceclius darstellen lassen.
+\vspace{0.5cm}
+\\ \textbf{Befehle für die höchste mittlere Temperatur}
+
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Befehl_höchstmittlere_Temperatur.jpeg}
+    \caption{Befehl zur Berechnung}
+    \label{fig:enter-label}
+\end{figure}
+
+    
+\begin{center}
+    
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Höchstmittlere_Temp_Grad_Celcius.jpeg}
+    \caption{Die höchste mittlere Temperatur in Grad Celcius}
+    \label{fig:enter-label}
+\end{figure}
+\textbf{Die Temperatur beträgt \SI{28,33}{\degreeCelsius}}.
+\end{center}
+
+\newpage
+\section{Quellenverzeichnis}
+
+\begin{itemize}
+
+\item Klenke2013  Achimh Klenke. \textit{Wahrscheinlichkeitstheorie}. Springer, 3. Auflage, 2013.
+ \item Datensatz zum Fahhradverleih und den Wetterbedingungen aus dem\\Moodle-Lernraum
+ \item \url{ https://sqliteonline.com/}
+ \item \url{ https://excel.cloud.microsoft/}
+ \item \href{https://github.com/Aurola01/Latex-Abgabe-Comet/commit/}{GitHub-Repository}
+\end{itemize}
+
+
+
+
+\end{document}
